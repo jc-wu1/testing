@@ -7,6 +7,6 @@ abstract class OrdersEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class OrderFetched extends OrdersEvent {}
+class OrdersFetched extends OrdersEvent {}
 
-class OrderTest extends OrdersEvent {}
+class OrdersTest extends OrdersEvent {}

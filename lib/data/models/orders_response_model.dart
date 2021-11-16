@@ -1,9 +1,9 @@
-import 'package:testing/data/models/ordersmodel.dart';
+import 'package:testing/data/models/orders_model.dart';
 
 class OrderListResponseModel {
   final String status;
   final String message;
-  final List<OrderModel> orders;
+  final List<OrdersModel> orders;
 
   OrderListResponseModel({
     required this.status,
@@ -15,9 +15,9 @@ class OrderListResponseModel {
     return OrderListResponseModel(
       status: json["status"] as String,
       message: json["message"] as String,
-      orders: List<OrderModel>.from(
+      orders: List<OrdersModel>.from(
         (json['result'] as List<dynamic>).map(
-          (e) => OrderModel.fromJson(e as Map<String, dynamic>),
+          (e) => OrdersModel.fromJson(e as Map<String, dynamic>),
         ),
       ),
     );

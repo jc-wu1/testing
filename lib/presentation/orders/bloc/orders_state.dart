@@ -12,7 +12,7 @@ class OrdersInitial extends OrdersState {}
 class OrdersLoading extends OrdersState {}
 
 class OrdersLoaded extends OrdersState {
-  final List<Orders> orders;
+  final List<OrdersEntity> orders;
 
   const OrdersLoaded(this.orders);
 }

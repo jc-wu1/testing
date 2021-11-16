@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart' hide Headers;
 import 'package:retrofit/retrofit.dart';
-import 'package:testing/data/models/orderlistresponsemodel.dart';
+import 'package:testing/data/models/order_response_model.dart';
 
 part 'order_api_services.g.dart';
 
@@ -8,9 +8,11 @@ part 'order_api_services.g.dart';
 abstract class OrderApiService {
   factory OrderApiService(Dio dio, {String baseUrl}) = _OrderApiService;
 
-  static const Map<String, String> headerDataDev = {};
+  static const Map<String, String> headerDataDev = {
+  
+  };
 
-  @GET('/orders')
+  @GET('/orders/test/{id}')
   @Headers(headerDataDev)
-  Future<HttpResponse<OrderListResponseModel>> getOrders();
+  Future<HttpResponse<OrderResponseModel>> getOrder(@Path("id") int orderid);
 }

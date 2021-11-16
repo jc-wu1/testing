@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'order_api_services.dart';
+part of 'orders_api_services.dart';
 
 // **************************************************************************
 // RetrofitGenerator
 // **************************************************************************
 
-class _OrderApiService implements OrderApiService {
-  _OrderApiService(this._dio, {this.baseUrl}) {
+class _OrdersApiService implements OrdersApiService {
+  _OrdersApiService(this._dio, {this.baseUrl}) {
     baseUrl ??= 'http://10.1.10.11:3000/api/v1';
   }
 
@@ -16,21 +16,21 @@ class _OrderApiService implements OrderApiService {
   String? baseUrl;
 
   @override
-  Future<HttpResponse<OrderResponseModel>> getOrder(orderid) async {
+  Future<HttpResponse<OrderListResponseModel>> getOrders() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{
-     
+    
     };
     _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<OrderResponseModel>>(
+        _setStreamType<HttpResponse<OrderListResponseModel>>(
             Options(method: 'GET', headers: _headers, extra: _extra)
-                .compose(_dio.options, '/orders/test/$orderid',
+                .compose(_dio.options, '/orders/test',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = OrderResponseModel.fromJson(_result.data!);
+    final value = OrderListResponseModel.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }

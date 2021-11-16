@@ -4,28 +4,30 @@ import 'package:dio/dio.dart';
 import 'package:testing/data/datasources/remote/order_api_services.dart';
 import 'package:testing/domain/entities/order_entity.dart';
 import 'package:testing/core/resources.dart';
-import 'package:testing/domain/repositories/orderrepository.dart';
+import 'package:testing/core/order_detail_params.dart';
+import 'package:testing/domain/repositories/order_repository.dart';
 
-class OrdersRepositoryImpl implements OrdersRepository {
-  final OrderApiService _orderApiService;
-  const OrdersRepositoryImpl(this._orderApiService);
+class OrderRepositoryImpl implements OrderRepository {
+  final OrderApiService orderApiService;
+
+  OrderRepositoryImpl(this.orderApiService);
 
   @override
-  Future<DataState<List<Orders>>> getOrders() async {
+  Future<DataState<OrderEntity>> getOrder(OrderDetailParams param) async {
     try {
-      final httpResponse = await _orderApiService.getOrders();
-
+      final httpResponse = await orderApiService.getOrder(param.orderid);
       if (httpResponse.response.statusCode == HttpStatus.ok) {
-        return DataSuccess(httpResponse.data.orders);
+        return DataSuccess(httpResponse.data.order);
+      } else {
+        return DataFailure(
+          DioError(
+            error: httpResponse.response.statusMessage,
+            requestOptions: httpResponse.response.requestOptions,
+            response: httpResponse.response,
+            type: DioErrorType.response,
+          ),
+        );
       }
-      return DataFailure(
-        DioError(
-          error: httpResponse.response.statusCode,
-          requestOptions: httpResponse.response.requestOptions,
-          type: DioErrorType.response,
-          response: httpResponse.response,
-        ),
-      );
     } on DioError catch (e) {
       return DataFailure(e);
     }

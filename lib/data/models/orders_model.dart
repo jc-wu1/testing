@@ -1,7 +1,7 @@
-import 'package:testing/domain/entities/order_entity.dart';
+import 'package:testing/domain/entities/orders_entity.dart';
 
-class OrderModel extends Orders {
-  const OrderModel(
+class OrdersModel extends OrdersEntity {
+  const OrdersModel(
     int orderid,
     String ordernumber,
     String orderstate,
@@ -11,7 +11,6 @@ class OrderModel extends Orders {
     String orderpartnername,
     String orderpartnerstate,
     String ordersalesperson,
-    String link,
   ) : super(
           orderid: orderid,
           ordernumber: ordernumber,
@@ -22,11 +21,10 @@ class OrderModel extends Orders {
           orderpartnername: orderpartnername,
           orderpartnerstate: orderpartnerstate,
           ordersalesperson: ordersalesperson,
-          link: link,
         );
 
-  factory OrderModel.fromJson(Map<String, dynamic> map) {
-    return OrderModel(
+  factory OrdersModel.fromJson(Map<String, dynamic> map) {
+    return OrdersModel(
       map["orderid"] as int,
       map["ordernumber"] as String,
       map["orderstate"] as String,
@@ -36,7 +34,6 @@ class OrderModel extends Orders {
       map["orderpartnername"] as String,
       map["orderpartnerstate"] as String,
       map["ordersalesperson"] as String,
-      map["link"] as String,
     );
   }
 }
